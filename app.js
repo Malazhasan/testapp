@@ -3,7 +3,7 @@ const AdminBroExpress = require("@admin-bro/express");
 const express = require("express");
 const mongoose = require("mongoose");
 const AdminBroMongoose = require("@admin-bro/mongoose");
-const token="process.env.Token"
+const token=process.env.Token
 
 //const {after,before}=require("./companies/actions/upload-image.hook")
 
@@ -82,15 +82,15 @@ app.use(express.json())
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // })
-// mongoose
-//   .connect("mongodb://localhost:27017/Hertz", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => {
-//     console.log("Connected to MongoDB");
-//   })
-//   .catch((err) => console.error("MongoDB connection error:", err));
+mongoose
+  .connect(process.env.DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 
   
