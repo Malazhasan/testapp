@@ -71,7 +71,7 @@ const adminBroRouter = AdminBroExpress.buildAuthenticatedRouter(
   null,
   {
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
   }
 );
 
