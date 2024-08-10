@@ -1,17 +1,17 @@
-const { default: AdminBro } = require("admin-bro");
-const AdminBroExpress = require("@admin-bro/express");
+// const { default: AdminBro } = require("admin-bro");
+// const AdminBroExpress = require("@admin-bro/express");
 const express = require("express");
 const mongoose = require("mongoose");
-const AdminBroMongoose = require("@admin-bro/mongoose");
+// const AdminBroMongoose = require("@admin-bro/mongoose");
 const token=process.env.Token
 
 //const {after,before}=require("./companies/actions/upload-image.hook")
 
-AdminBro.registerAdapter(AdminBroMongoose);
+// AdminBro.registerAdapter(AdminBroMongoose);
 
 const app = express();
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+ // app.use(express.urlencoded({ extended: true }));
+ // app.use(express.json());
 
 
 
@@ -44,38 +44,38 @@ const Key = mongoose.model("Key", KeySchema);
 
 
 
-const canAccess = ({ currentAdmin, record }) => {
-  return currentAdmin.role === "admin";
-};
+// const canAccess = ({ currentAdmin, record }) => {
+//   return currentAdmin.role === "admin";
+// };
 
-const adminBro = new AdminBro({
-  resources: [User, Course, Key],
-  rootPath: "/admin",
-  branding: {
-    companyName: "HertZ",
-    softwareBrothers: false,
-  },
-});
+// const adminBro = new AdminBro({
+//   resources: [User, Course, Key],
+//   rootPath: "/admin",
+//   branding: {
+//     companyName: "HertZ",
+//     softwareBrothers: false,
+//   },
+// });
 
-const adminBroRouter = AdminBroExpress.buildAuthenticatedRouter(
-  adminBro,
-  {
-    authenticate: async (email, password) => {
-      // const user = await User.findOne({ email, password });
-      // const admins = ['admin', 'teacher'];
-      // return admins.includes(user.role) ? user : null;
-      return { email: "test@email.com", password: 123, role: "admin" };
-    },
-    cookiePassword: "some-secret-password-used-to-secure-cookies",
-  },
-  null,
-  {
-    resave: true,
-    saveUninitialized: true,
-  }
-);
+// const adminBroRouter = AdminBroExpress.buildAuthenticatedRouter(
+//   adminBro,
+//   {
+//     authenticate: async (email, password) => {
+//       // const user = await User.findOne({ email, password });
+//       // const admins = ['admin', 'teacher'];
+//       // return admins.includes(user.role) ? user : null;
+//       return { email: "test@email.com", password: 123, role: "admin" };
+//     },
+//     cookiePassword: "some-secret-password-used-to-secure-cookies",
+//   },
+//   null,
+//   {
+//     resave: true,
+//     saveUninitialized: true,
+//   }
+// );
 
-app.use(adminBro.options.rootPath, adminBroRouter);
+// app.use(adminBro.options.rootPath, adminBroRouter);
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 // mongoose.connect('mongodb://localhost:27017/adminbro-example', {
